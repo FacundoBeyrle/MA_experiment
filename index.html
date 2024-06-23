@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Redirect Web App</title>
+    <script>
+        function randomRedirect() {
+            const pages = [
+                'https://www.example.com/home',
+                'https://www.example.com/about',
+                'https://www.example.com/contact'
+            ];
+            const randomPage = pages[Math.floor(Math.random() * pages.length)];
+            window.location.href = randomPage;
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Random Redirect Web App</h1>
+    <p>Click the link below to be redirected to a random page.</p>
+    <a href="javascript:void(0);" onclick="randomRedirect()">Go to a random page</a>
+</body>
+</html>
