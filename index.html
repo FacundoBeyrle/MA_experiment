@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Redirect</title>
+    <title>Introduction</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         function randomRedirect() {
             const pages = [
-                'https://salesagent1.netlify.app/',
-                'https://salesagent1.netlify.app/',
+                'https://forms.gle/YqnYxf6WDmAXNNys9',
+                'https://forms.gle/BfRRKjMB9zsM9sga6'
             ];
             const randomPage = pages[Math.floor(Math.random() * pages.length)];
             window.location.href = randomPage;
@@ -16,8 +17,12 @@
     </script>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>Click the link below to be redirected</p>
-    <a href="javascript:void(0);" onclick="randomRedirect()">Start Experiment</a>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p> Thank you for participating in our experiment. 
+            Your input is valuable and will contribute to our research. 
+            Please click the button below to start the experiment and make sure to fill in the survey afterwards.</p>
+        <a href="javascript:void(0);" onclick="randomRedirect()">Start</a>
+    </div>
 </body>
 </html>
