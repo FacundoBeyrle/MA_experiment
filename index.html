@@ -21,7 +21,13 @@
             const randomPage = pages[Math.floor(Math.random() * pages.length)];
             window.location.href = randomPage;
         }
+
+        function handleSubmit(event) {
+            event.preventDefault(); 
+            randomRedirect(); 
+        }
     </script>
+
 </head>
 <body>
     <div class="container">
@@ -55,7 +61,10 @@
         </ol>
         <p>Please make sure to complete both the interaction with the virtual agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
         <div class="button-container">
-            <a href="javascript:void(0);" onclick="randomRedirect()">Start</a>
+            <form onsubmit="handleSubmit(event)" data-netlify-recaptcha="true">
+                <div data-netlify-recaptcha="true"></div>
+                <button type="submit">Start</button>
+            </form>
         </div>
     </div>
 </body>
