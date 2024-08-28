@@ -83,25 +83,29 @@ a:hover {
 
 form {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; 
+    align-items: center; 
     margin-top: 1rem;
 }
 
-.button-container button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
+.button-container {
     margin-top: 1rem;
+    text-align: center; 
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+}
+
+.button-container button {
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     color: #fff;
     background-color: #007bff;
     border: none;
     border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    text-align: center; 
-    align-self: center;
+    text-align: center;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .button-container button:hover {
