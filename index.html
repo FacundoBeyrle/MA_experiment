@@ -6,6 +6,7 @@
     <title>Introduction</title>
     <link rel="icon" href="BMW.ico" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         function randomRedirect() {
             const pages = [
@@ -23,8 +24,13 @@
         }
 
         function handleSubmit(event) {
-            event.preventDefault(); 
-            randomRedirect(); 
+            event.preventDefault();
+            const response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert("Please complete the reCAPTCHA.");
+                return;
+            }
+            randomRedirect();
         }
     </script>
 
@@ -60,9 +66,9 @@
             </li>
         </ol>
         <p>Please make sure to complete both the interaction with the virtual agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
-            <form onsubmit="handleSubmit(event)"  data-netlify="true" data-netlify-recaptcha="true">
-                <div data-netlify-recaptcha="true"></div>
+            <form onsubmit="handleSubmit(event)" netlify-recaptcha="true">
                 <div class="button-container">
+                    <div class="g-recaptcha" data-sitekey="6LdUQTIqAAAAAIgfwooBDmQHkPltqlkA0vtefsjW"></div>
                     <button type="submit">Start</button>
                 </div>
             </form>
