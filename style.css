@@ -81,13 +81,6 @@ a:hover {
     background-color: #0056b3;
 }
 
-form {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin-top: 1rem;
-}
-
 .button-container {
     margin-top: 1rem;
     text-align: center; 
@@ -96,7 +89,7 @@ form {
     justify-content: center; 
 }
 
-.button-container button {
+button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     color: #fff;
@@ -110,4 +103,16 @@ form {
 
 .button-container button:hover {
     background-color: #0056b3;
+}
+
+.id-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; 
+}
+
+#user-id {
+    font-weight: bold;
+    margin: 0;
 }

@@ -19,7 +19,7 @@
             }
             
             // Display user ID on the page
-            document.getElementById('user-id').innerText = `Your User ID: ${userId}`;
+            document.getElementById('user-id').innerText = `${userId}`;
 
             // Optionally, log the user ID to a Google Sheet
             logUserIdToGoogleSheet(userId);
@@ -38,12 +38,27 @@
                 console.error('Error logging user ID:', error);
             }
         }
+
+        function copyToClipboard() {
+            const userIdText = document.getElementById('user-id').innerText;
+            navigator.clipboard.writeText(userIdText).then(() => {
+                alert('User ID copied to clipboard');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        }
+
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Thank you!</h1>
-        <p>Thank you for participating in this study. Your unique User ID is displayed below:</p>
-        <p id="user-id"></p>
+        <p>Thank you for participating in this study. Please copy this ID to MTurk, to ensure you receive your compensation:</p>
+
+        <div class="id-container">
+            <p id="user-id"></p>
+            <button onclick="copyToClipboard()">Copy ID</button>
+        </div>
+    </div>
 </body>
 </html>
