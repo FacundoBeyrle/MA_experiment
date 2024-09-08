@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction</title>
+    <title>Finished</title>
     <link rel="icon" href="BMW.ico" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
     <script>
-        function randomRedirect() {
-            const pages = [
-                'https://forms.gle/FdUjGG98153YfLQf7',
-                'https://forms.gle/Rj8zeGPnQ3BQdiyk7',
-                'https://forms.gle/eEH5FK4Pvnm2DGNm9',
-                'https://forms.gle/Z7CESip6TWc9q4NZ9',
-                'https://forms.gle/b2YhqGbXTjvfRey7A',
-                'https://forms.gle/odmUT3pAie5Q5Kzp6',
-                'https://forms.gle/MXbh5rdzZQ6qC9XN6',
-                'https://forms.gle/1hB9xJ3deJGHtkXXA'
-            ];
-            const randomPage = pages[Math.floor(Math.random() * pages.length)];
-            window.location.href = randomPage;
-        }
+        let userId = null;
 
-        function handleSubmit(event) {
-            event.preventDefault();
-            const response = grecaptcha.getResponse();
-            if (response.length === 0) {
-                alert("Please complete the reCAPTCHA.");
-                return;
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if user ID exists in localStorage
+            userId = localStorage.getItem('chatUserId');
+            if (!userId) {
+                userId = uuidv4();  // Generate new UUID
+                localStorage.setItem('chatUserId', userId);
             }
-            randomRedirect();
+            
+            // Display user ID on the page
+            document.getElementById('user-id').innerText = `Your User ID: ${userId}`;
+
+            // Optionally, log the user ID to a Google Sheet
+            logUserIdToGoogleSheet(userId);
+        });
+
+        async function logUserIdToGoogleSheet(userId) {
+            try {
+                const response = await fetch('/.netlify/functions/logID', {
+                    method: 'POST',
+                    body: JSON.stringify({ message: 'User joined the survey', from: 'user', userId }),
+                });
+                if (!response.ok) {
+                    console.error('Failed to log user ID');
+                }
+            } catch (error) {
+                console.error('Error logging user ID:', error);
+            }
         }
     </script>
-
 </head>
 <body>
     <div class="container">
@@ -65,14 +70,7 @@
                 </ul>
             </li>
         </ol>
-        <p>Please make sure to complete both the interaction with the virtual agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
-            <form onsubmit="handleSubmit(event)" netlify-recaptcha="true">
-                <div class="g-recaptcha" data-sitekey="6LdUQTIqAAAAAIgfwooBDmQHkPltqlkA0vtefsjW"></div>
-                <div class="button-container">
-                    <button type="submit">Start</button>
-                </div>
-            </form>
-        </div>
-    </div>
+        <p>Thank you for participating in this study. Your unique User ID is displayed below:</p>
+        <p id="user-id"></p>
 </body>
 </html>
