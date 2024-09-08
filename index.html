@@ -14,7 +14,7 @@
             // Check if user ID exists in localStorage
             userId = localStorage.getItem('chatUserId');
             if (!userId) {
-                userId = uuidv4();  // Generate new UUID
+                userId = uuid.v4(); 
                 localStorage.setItem('chatUserId', userId);
             }
             
@@ -42,34 +42,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome!</h1>
-        <p>Thank you for participating in this study. Please follow these steps to complete your participation:</p>
-        <ol class="custom-counter">
-            <li><strong>Access the Survey:</strong>
-                <ul>
-                    <li>Press Start to access the survey form.</li>
-                </ul>
-            </li>
-            <li><strong>Interact with the Virtual Agent:</strong>
-                <ul>
-                    <li>Within the survey, you will find a link to a virtual assistant.</li>
-                    <li>Click on the link and interact with the virtual agent to receive information about different BMW models.</li>
-                    <li>Based on the information provided, select the BMW model that best fits your preferences.</li>
-                </ul>
-            </li>
-            <li><strong>Return to the Survey:</strong>
-                <ul>
-                    <li>After interacting with the virtual agent, return to the survey form.</li>
-                    <li>Indicate the BMW model you selected in the appropriate section of the form.</li>
-                </ul>
-            </li>
-            <li><strong>Complete the Survey:</strong>
-                <ul>
-                    <li>Proceed to the last page of the survey and answer all the remaining questions.</li>
-                    <li>Once you have submitted the form you can close all windows.</li>
-                </ul>
-            </li>
-        </ol>
+        <h1>Thank you!</h1>
         <p>Thank you for participating in this study. Your unique User ID is displayed below:</p>
         <p id="user-id"></p>
 </body>
