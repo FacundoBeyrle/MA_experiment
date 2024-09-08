@@ -35,7 +35,7 @@ const handler: Handler = async (event) => {
     // Append the user ID and timestamp to Google Sheet
     await sheets.spreadsheets.values.append({
       auth,
-      spreadsheetId: sheetId,
+      spreadsheetId: sheetID,
       range: 'Sheet1!A:B', 
       valueInputOption: 'USER_ENTERED',
       requestBody: {
