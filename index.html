@@ -14,6 +14,10 @@
                 'agents/agent2.html',
                 'agents/agent3.html',
                 'agents/agent4.html',
+                'agents/agent5.html',
+                'agents/agent6.html',
+                'agents/agent7.html',
+                'agents/agent8.html',
             ];
 
             // Check if the user already has an assigned page in localStorage
@@ -32,10 +36,10 @@
         function handleSubmit(event) {
             event.preventDefault();
             const response = grecaptcha.getResponse();
-            // if (response.length === 0) {
-            //     alert("Please complete the reCAPTCHA.");
-            //     return;
-            // }
+                if (response.length === 0) {
+                 alert("Please complete the reCAPTCHA.");
+                 return;
+            }
             randomRedirect();
         }
     </script>
