@@ -1,14 +1,21 @@
-/* General Styles */
-body {
+/* Global Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     font-family: Helvetica, sans-serif;
     background-color: #f4f4f9;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0; 
 }
 
 /* Container Styling */
@@ -17,23 +24,24 @@ body {
     padding: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    max-width: 800px; 
-    width: 100%; 
+    max-width: 800px;
+    width: 100%;
     margin: 1rem;
     text-align: left;
-    justify-content: center; 
+    justify-content: center;
+    overflow: visible;
 }
 
+/* Text Styling */
 h1 {
     color: #333;
-    text-align: center; 
+    text-align: center;
 }
 
 p {
     margin: 1rem 0;
 }
 
-/* Custom Counter Styling */
 .custom-counter {
     counter-reset: custom-counter;
 }
@@ -60,13 +68,16 @@ p {
     font-size: 1rem;
 }
 
-ul {
-    padding-left: 1.5rem;
-    list-style-type: disc; 
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
 }
 
-/* Link Button Styles */
-a {
+/* Button Styles */
+a, button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     margin-top: 1rem;
@@ -77,66 +88,24 @@ a {
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    text-align: center; 
-    align-self: center;
+    text-align: center;
 }
 
-a:hover {
+a:hover, button:hover {
     background-color: #0056b3;
 }
 
-/* Button Container Styling */
 .button-container {
     margin-top: 1rem;
-    text-align: center; 
-    width: 100%; 
-    display: flex;
-    justify-content: center; 
-}
-
-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.button-container button:hover {
-    background-color: #0056b3;
-}
-
-/* User ID Container */
-.id-container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 1rem; 
-}
-
-#user-id {
-    font-weight: bold;
-    margin: 0;
-}
-
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin-top: 1rem;
 }
 
 /* Mobile-specific Styles */
 @media (max-width: 600px) {
-    /* Reduce padding and margin on small screens */
     .container {
         padding: 1rem;
-        margin: 1rem;
     }
 
     h1 {
@@ -147,14 +116,12 @@ form {
         font-size: 1rem;
     }
 
-    /* Make buttons full width on mobile */
     a, button {
         width: 100%;
         padding: 1rem;
         font-size: 1rem;
     }
 
-    /* Adjust the custom counter positioning */
     .custom-counter > li::before {
         left: -1.5rem;
         width: 1.25rem;
