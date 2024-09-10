@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Helvetica, sans-serif;
     background-color: #f4f4f9;
@@ -5,11 +6,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0; 
 }
 
+/* Container Styling */
 .container {
     background: #fff;
     padding: 2rem;
@@ -17,7 +19,7 @@ body {
     border-radius: 10px;
     max-width: 800px; 
     width: 100%; 
-    margin: 0 2rem;
+    margin: 1rem;
     text-align: left;
     justify-content: center; 
 }
@@ -31,6 +33,7 @@ p {
     margin: 1rem 0;
 }
 
+/* Custom Counter Styling */
 .custom-counter {
     counter-reset: custom-counter;
 }
@@ -62,6 +65,7 @@ ul {
     list-style-type: disc; 
 }
 
+/* Link Button Styles */
 a {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -81,6 +85,7 @@ a:hover {
     background-color: #0056b3;
 }
 
+/* Button Container Styling */
 .button-container {
     margin-top: 1rem;
     text-align: center; 
@@ -105,6 +110,7 @@ button {
     background-color: #0056b3;
 }
 
+/* User ID Container */
 .id-container {
     display: flex;
     justify-content: center;
@@ -117,10 +123,42 @@ button {
     margin: 0;
 }
 
-
+/* Form Styling */
 form {
     display: flex;
     flex-direction: column; 
     align-items: center; 
     margin-top: 1rem;
+}
+
+/* Mobile-specific Styles */
+@media (max-width: 600px) {
+    /* Reduce padding and margin on small screens */
+    .container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+
+    /* Make buttons full width on mobile */
+    a, button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Adjust the custom counter positioning */
+    .custom-counter > li::before {
+        left: -1.5rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 0.875rem;
+    }
 }
