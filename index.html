@@ -3,61 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finished</title>
+    <title>Introduction</title>
     <link rel="icon" href="BMW.ico" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
-        let userId = null;
+        function randomRedirect() {
+            const pages = [
+                'agents/agent1.html',
+                'agents/agent2.html',
+                'agents/agent3.html',
+                'agents/agent4.html',
+            ];
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Check if user ID exists in localStorage
-            userId = localStorage.getItem('chatUserId');
-            if (!userId) {
-                userId = uuid.v4(); 
-                localStorage.setItem('chatUserId', userId);
-            }
+            // Check if the user already has an assigned page in localStorage
+            let assignedPage = localStorage.getItem('assignedPage');
             
-            // Display user ID on the page
-            document.getElementById('user-id').innerText = `${userId}`;
-
-            // Optionally, log the user ID to a Google Sheet
-            logUserIdToGoogleSheet(userId);
-        });
-
-        async function logUserIdToGoogleSheet(userId) {
-            try {
-                const response = await fetch('/.netlify/functions/logID', {
-                    method: 'POST',
-                    body: JSON.stringify({ message: 'User joined the survey', from: 'user', userId }),
-                });
-                if (!response.ok) {
-                    console.error('Failed to log user ID');
-                }
-            } catch (error) {
-                console.error('Error logging user ID:', error);
+            // If no page is assigned, randomly select one and store it
+            if (!assignedPage) {
+                assignedPage = pages[Math.floor(Math.random() * pages.length)];
+                localStorage.setItem('assignedPage', assignedPage); // Save to localStorage
             }
+
+            // Redirect to the assigned page
+            window.location.href = assignedPage;
         }
 
-        function copyToClipboard() {
-            const userIdText = document.getElementById('user-id').innerText;
-            navigator.clipboard.writeText(userIdText).then(() => {
-                alert('User ID copied to clipboard');
-            }).catch(err => {
-                console.error('Error copying text: ', err);
-            });
+        function handleSubmit(event) {
+            event.preventDefault();
+            const response = grecaptcha.getResponse();
+            // if (response.length === 0) {
+            //     alert("Please complete the reCAPTCHA.");
+            //     return;
+            // }
+            randomRedirect();
         }
-
     </script>
+
 </head>
 <body>
     <div class="container">
-        <h1>Thank you!</h1>
-        <p>Thank you for participating in this study. Please copy this ID to MTurk, to ensure you receive your compensation:</p>
-
-        <div class="id-container">
-            <p id="user-id"></p>
-            <button onclick="copyToClipboard()">Copy ID</button>
+        <h1>Welcome!</h1>
+        <p>Thank you for participating in this study. Please follow these steps to complete your participation:</p>
+        <ol class="custom-counter">
+            <li><strong>Access the Survey:</strong>
+                <ul>
+                    <li>Press Start to access the survey form.</li>
+                </ul>
+            </li>
+            <li><strong>Interact with the Virtual Agent:</strong>
+                <ul>
+                    <li>Within the survey, you will find a link to a virtual assistant.</li>
+                    <li>Click on the link and interact with the virtual agent to receive information about different BMW models.</li>
+                </ul>
+            </li>
+            <li><strong>Return to the Survey:</strong>
+                <ul>
+                    <li>After interacting with the virtual agent, return to the survey form.</li>
+                    <li>Indicate the BMW model that fits best for you accoring to the agent's advice in the appropriate section of the form.</li>
+                </ul>
+            </li>
+            <li><strong>Complete the Survey:</strong>
+                <ul>
+                    <li>Proceed to the last page of the survey and answer all the remaining questions.</li>
+                    <li>Once you have submitted the form you receive a link to an ID that you need to enter at MTurk.</li>
+                </ul>
+            </li>
+        </ol>
+        <p>Please make sure to complete both the interaction with the virtual agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
+            <form onsubmit="handleSubmit(event)" netlify-recaptcha="true">
+                <div class="g-recaptcha" data-sitekey="6LdUQTIqAAAAAIgfwooBDmQHkPltqlkA0vtefsjW"></div>
+                <div class="button-container">
+                    <button type="submit">Start</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

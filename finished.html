@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finished</title>
+    <link rel="icon" href="BMW.ico" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script>
+        let userId = null;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if user ID exists in localStorage
+            userId = localStorage.getItem('chatUserId');
+            if (!userId) {
+                userId = uuid.v4(); 
+                localStorage.setItem('chatUserId', userId);
+            }
+            
+            // Display user ID on the page
+            document.getElementById('user-id').innerText = `${userId}`;
+
+            // Optionally, log the user ID to a Google Sheet
+            logUserIdToGoogleSheet(userId);
+        });
+
+        async function logUserIdToGoogleSheet(userId) {
+            try {
+                const response = await fetch('/.netlify/functions/logID', {
+                    method: 'POST',
+                    body: JSON.stringify({ message: 'User joined the survey', from: 'user', userId }),
+                });
+                if (!response.ok) {
+                    console.error('Failed to log user ID');
+                }
+            } catch (error) {
+                console.error('Error logging user ID:', error);
+            }
+        }
+
+        function copyToClipboard() {
+            const userIdText = document.getElementById('user-id').innerText;
+            navigator.clipboard.writeText(userIdText).then(() => {
+                alert('User ID copied to clipboard');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank you!</h1>
+        <p>Thank you for participating in this study. Please copy this ID to MTurk, to ensure you receive your compensation:</p>
+
+        <div class="id-container">
+            <p id="user-id"></p>
+            <button onclick="copyToClipboard()">Copy ID</button>
+        </div>
+    </div>
+</body>
+</html>
