@@ -115,7 +115,7 @@ a:hover, button:hover {
 }
 
 
-@media (max-width: 600px) {
+@media screen and (orientation: portrait)  {
     .container {
         padding: 1rem; 
     }
@@ -142,5 +142,21 @@ a:hover, button:hover {
         width: 1.25rem;
         height: 1.25rem;
         font-size: 0.875rem;
+    }
+
+    .iframe-container {
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        overflow: hidden; /* No overflow allowed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ensure iframe takes up full width and height of container */
+    iframe {
+        width: 100vw; /* Full width of the viewport */
+        height: 100vh; /* Full height of the viewport */
+        border: none;
     }
 }}
