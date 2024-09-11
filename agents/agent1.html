@@ -7,22 +7,31 @@
     <link rel="icon" href="../BMW.ico" />
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden; 
-            background-color: #f4f4f9;
-        }
-        iframe {
             width: 100%;
-            height: 100vh; 
-            border: none;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f4f4f9; /* Light grey background */
+            position: fixed; /* Prevent scrolling or dragging */
         }
+
+        /* Ensure iframe container takes up full width and height without overflow */
         .iframe-container {
-            width: 100vw; 
-            overflow-x: hidden; 
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* No overflow allowed */
             display: flex;
             justify-content: center;
+            align-items: center;
+        }
+
+        /* Ensure iframe takes up full width and height of container */
+        iframe {
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            border: none;
         }
     </style>
 </head>
