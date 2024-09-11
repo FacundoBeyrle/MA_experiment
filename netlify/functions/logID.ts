@@ -23,7 +23,16 @@ const handler: Handler = async (event) => {
   }
 
   const { userId } = JSON.parse(event.body || '{}') as SheetData;
-  const timestamp = new Date().toISOString();
+  const timestamp = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Berlin',
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).format(new Date());
 
   const sheetId = process.env.GOOGLE_SHEET_ID;
 
