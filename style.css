@@ -101,10 +101,10 @@ a:hover, button:hover {
 
 .id-container {
     display: flex;
-    flex-direction: column; /* Stack the ID and button vertically */
+    flex-direction: column; 
     justify-content: center;
-    align-items: center; /* Center elements horizontally */
-    gap: 1rem; /* Space between the ID and the button */
+    align-items: center; 
+    gap: 1rem; 
     margin-top: 1rem;
 }
 
