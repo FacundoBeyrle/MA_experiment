@@ -42,21 +42,24 @@ p {
     margin: 1rem 0;
 }
 
+/* Custom Counter Styling */
 .custom-counter {
     counter-reset: custom-counter;
+    list-style: none; /* Remove default list numbers */
 }
 
 .custom-counter > li {
     counter-increment: custom-counter;
     position: relative;
     margin-bottom: 1rem;
+    padding-left: 2.5rem; /* Add padding to fit the number inside the container */
 }
 
 .custom-counter > li::before {
     content: counter(custom-counter);
     position: absolute;
     top: 0;
-    left: -2rem;
+    left: 0; /* Adjusted to be inside the list item */
     background-color: #007bff;
     color: #fff;
     border-radius: 50%;
@@ -105,7 +108,7 @@ a:hover, button:hover {
 /* Mobile-specific Styles */
 @media (max-width: 600px) {
     .container {
-        padding: 1rem;
+        padding: 1rem; /* Reduce padding for smaller screens */
     }
 
     h1 {
@@ -120,6 +123,10 @@ a:hover, button:hover {
         width: 100%;
         padding: 1rem;
         font-size: 1rem;
+    }
+
+    .custom-counter > li {
+        padding-left: 2rem; /* Adjust padding for smaller screens */
     }
 
     .custom-counter > li::before {
