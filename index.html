@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction</title>
-    <link rel="icon" href="BMW.ico" />
+    <link rel="icon" href="netlify.ico" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         function randomRedirect() {
             const pages = [
@@ -15,21 +14,9 @@
                 'agents/agent3.html',
                 'agents/agent4.html',
                 'agents/agent5.html',
-                'agents/agent6.html',
-                'agents/agent7.html',
-                'agents/agent8.html',
             ];
-
-            // Check if the user already has an assigned page in localStorage
-            let assignedPage = localStorage.getItem('assignedPage');
-            
-            // If no page is assigned, randomly select one and store it
-            if (!assignedPage) {
-                assignedPage = pages[Math.floor(Math.random() * pages.length)];
-                localStorage.setItem('assignedPage', assignedPage); // Save to localStorage
-            }
-
-            // Redirect to the assigned page
+            // TODO: Set up google forms and working chatbot links
+            const assignedPage = pages[Math.floor(Math.random() * pages.length)];
             window.location.href = assignedPage;
         }
 
@@ -48,8 +35,8 @@
 <body>
     <div class="container">
         <h1>Welcome!</h1>
-        <p>Thank you for participating in this study. As a BMW customer you will be interacting with a virtual sales assistant to seek information about different BMW models. 
-            Your task is to explore the options available and ask any questions you may have to help you make an informed decision. 
+        <p>Thank you for participating in this study. You will be acting as a customer service agent who is assigned a task and will use
+            a conversational agent to resolve the issue. 
         Please follow these steps to complete your participation:</p>
         <ol class="custom-counter">
             <li><strong>Access the Survey:</strong>
@@ -57,28 +44,26 @@
                     <li>When you are done reading this info press the start button at the bottom of this page to access the survey form.</li>
                 </ul>
             </li>
-            <li><strong>Interact with the Virtual Agent:</strong>
+            <li><strong>Interact with the Conversational Agent:</strong>
                 <ul>
-                    <li>Within the survey, you will find a link to a virtual assistant.</li>
-                    <li>Click on the link and interact with the virtual agent to receive information about different BMW models.</li>
+                    <li>Within the survey, you will find a link to a conversational agent.</li>
+                    <li>Click on the link and interact with the conversational agent to resolve the case.</li>
                 </ul>
             </li>
             <li><strong>Return to the Survey:</strong>
                 <ul>
-                    <li>After interacting with the virtual agent, return to the survey form.</li>
-                    <li>Indicate the BMW model that fits best for you according to the agent's advice in the appropriate section of the form.</li>
+                    <li>After interacting with the conversational agent, return to the survey form.</li>
                 </ul>
             </li>
             <li><strong>Complete the Survey:</strong>
                 <ul>
                     <li>Proceed to the last page of the survey and answer all the remaining questions.</li>
-                    <li>Once you have submitted the form you receive a link to a code that you need to copy and enter at MTurk.</li>
+                    <li>Once you have submitted the form you can choose to participate in a follow-up study to this experiment.</li>
                 </ul>
             </li>
         </ol>
-        <p>Please make sure to complete both the interaction with the virtual agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
-            <form onsubmit="handleSubmit(event)" netlify-recaptcha="true">
-                <div class="g-recaptcha" data-sitekey="6LdUQTIqAAAAAIgfwooBDmQHkPltqlkA0vtefsjW"></div>
+        <p>Please make sure to complete both the interaction with the conversational agent and the survey to ensure your participation is fully recorded. Thank you for your time and cooperation!</p>
+            <form onsubmit="handleSubmit(event)">
                 <div class="button-container">
                     <button type="submit">Start</button>
                 </div>
